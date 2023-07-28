@@ -1,0 +1,111 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%;
+    padding: var(--space-md);
+    max-width: 1500px;
+    margin-inline: auto;
+}
+
+nav a {
+    text-decoration: none;
+    font-size: 20px;
+    color: #15133C;
+}
+
+nav a:hover {
+    color: white;
+}
+
+.nav_list {
+    border-radius: 10px;
+    height: 50px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* gap: 20px; */
+
+}
+
+/* .nav_list:hover{
+    border-radius: 10px;
+    color: white;
+    height: 30px;
+    width: 80px;
+    background-color: #EC994B;
+
+  } */
+.nav-list-1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+}
+
+.nav-list-1:hover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: white;
+    height: 30px;
+    width: 100px;
+    background-color: #EC994B;
+}
+
+button {
+    border: none;
+    background-color: transparent;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+.btn-login {
+    border: 2px dotted #EC994B;
+    border-radius: 5px;
+    color: #EC994B;
+    transition: border-color 0.3s, color 0.3s;
+}
+
+.btn-login:hover {
+    border-color: transparent;
+    color: #15133C;
+}
+
+.nav-list-btn {
+    margin-left: 20px;
+}
+
+.logo {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 50px;
+    margin: 1rem 2rem;
+    background-color: #ffffff;
+    border-radius: 100px;
+    -webkit-box-shadow: var(--box-shadow-1);
+    box-shadow: var(--box-shadow-1);
+}

@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+/* https://colorhunt.co/palette/15133c73777bec994bf1eee9 */
+
+model-viewer {
+    width: 100%;
+    height: 600px;
+    background-color: white;
+}
+
+.top_bar {
+    display: flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-item-align: center;
+    -ms-grid-row-align: center;
+    align-self: center;
+    -ms-grid-column-align: center;
+    justify-self: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    gap: var(--space-lg);
+    flex-direction: row;
+    margin: 10px;
+}
+
+.left_bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100vh;
+    width: 50%;
+}
+
+.right_bar {
+    min-width: 100vh;
+    width: 50%;
+}
+
+.left-bar-head span{
+    font-size: 80px;
+    color: #15133C;
+}
+.left-bar-head h4{
+    font-size: 20px;
+    color: #EC994B;
+}

@@ -31,6 +31,7 @@ model-viewer {
     gap: var(--space-lg);
     flex-direction: row;
     margin: 10px;
+    min-height: 100vh;
 }
 
 .left_bar {
@@ -46,7 +47,7 @@ model-viewer {
     width: 50%;
 }
 
-.left-bar-head span{
+.left-bar-head-span{
     font-size: 80px;
     color: #15133C;
 }

@@ -55,8 +55,7 @@ model-viewer {
     font-size: 20px;
     color: #EC994B;
 }
-
-.word_wrap{
-    width: 400px;
-    color: #73777B;
+.canvas_h canvas{
+    height: 100vh !important;
+    align-items: center;
 }

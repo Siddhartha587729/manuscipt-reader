@@ -1,5 +1,6 @@
 import "../Styles/model.css"
 import book from "../assets/scene.gltf"
+import Model1 from "./Model1"
 /* import { ModelViewer } from 'react-model-viewer'; */
 
 function Model() {
@@ -12,6 +13,7 @@ function Model() {
             </div>
         </div>
         <div className="right_bar">
+          <Model1/>
             {/* <model-viewer src={book} alt="A 3D model of a book" shadow-intensity="1" camera-controls auto-rotate ar></model-viewer>
     
             <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>

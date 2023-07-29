@@ -54,3 +54,7 @@ model-viewer {
     font-size: 20px;
     color: #EC994B;
 }
+.canvas_h canvas{
+    height: 100vh !important;
+    align-items: center;
+}

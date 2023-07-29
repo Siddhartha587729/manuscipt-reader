@@ -1,0 +1,32 @@
+.create{
+    margin: 10px 0px;
+}
+
+.create-desc{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    
+}
+
+.create-desc-body{
+    width: 80rem;
+    margin: 10px;
+}
+
+.create-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 3px 3px 6px 3px rgba(0, 0, 0, 0.3);
+    background-color: #EC994B;
+    height: 120px;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.create-form button{
+    border: 1px solid;
+}

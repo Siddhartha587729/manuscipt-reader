@@ -1,6 +1,8 @@
 import React from 'react'
 import "../Styles/create.css"
 import {ArrowUpTrayIcon} from "@heroicons/react/24/solid"
+import { Form } from 'react-router-dom'
+
 function Create() {
   return (
     <div className="create">
@@ -13,9 +15,13 @@ function Create() {
             </p>
         </div>
         <div className="create-form">
-            <button>
-                <span><ArrowUpTrayIcon width={20}/>upload</span>
-            </button>
+            <Form className="create-form-r" method='post' encType="multipart/form-data">
+                <label htmlFor="newImage">Add new image</label>
+                <input type="file" name='newImage' id='newImage' required/>
+                <label htmlFor="temp">this is temp</label>
+                <input type="text" name='temp' required/>
+                <button type='submit' className='create-form-btn'>upload<ArrowUpTrayIcon width={20}/></button>
+            </Form>
         </div>
         <div className="create-step">
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia, suscipit.</p>

@@ -10,7 +10,8 @@ function Model() {
             <div className="left-bar-head">
                 <h4>Create your own digital </h4>
                 <h1><span className="left-bar-head-span">Manuscript</span></h1>
-                <h5 className="word_wrap">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore, maiores. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, repellat.</h5>
+                <h5 className="word_wrap">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore, 
+                maiores. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, repellat.</h5>
             </div>
         </div>
         <div className="right_bar">

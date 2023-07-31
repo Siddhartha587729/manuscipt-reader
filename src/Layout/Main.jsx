@@ -1,10 +1,14 @@
-import Dashboard from "../Pages/Dashboard"
+import Navigation from "../Components/Navigation"
+import Footer from "../Components/Footer"
+import { Outlet } from "react-router-dom"
 
 
 function Main() {
   return (
     <div>
-        <Dashboard/>
+        <Navigation/>
+        <Outlet/>
+        <Footer/>
     </div>
   )
 }

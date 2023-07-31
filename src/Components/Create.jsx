@@ -17,9 +17,7 @@ function Create() {
         <div className="create-form">
             <Form className="create-form-r" method='post' encType="multipart/form-data">
                 <label htmlFor="newImage">Add new image</label>
-                <input type="file" name='newImage' id='newImage' required/>
-                <label htmlFor="temp">this is temp</label>
-                <input type="text" name='temp' required/>
+                <input type="file" name='newImage' id='newImage' accept='.jpeg, .png, .jpg' required/>
                 <button type='submit' className='create-form-btn'>upload<ArrowUpTrayIcon width={20}/></button>
             </Form>
         </div>

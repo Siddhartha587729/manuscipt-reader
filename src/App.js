@@ -1,9 +1,10 @@
 import * as React from "react";
-import { createBrowserRouter,RouterProvider,} from "react-router-dom";
+import { createBrowserRouter,RouterProvider,createRoutesFromElements,Route} from "react-router-dom";
 import Dashboard, { dashboardAction } from './Pages/Dashboard';
 import Login from "./Pages/Login";
 import Main from "./Layout/Main";
 import Display from "./Pages/Display";
+
 
 const router = createBrowserRouter([
   {

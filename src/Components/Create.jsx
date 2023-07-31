@@ -1,10 +1,9 @@
-import React from 'react'
 import "../Styles/create.css"
 import {ArrowUpTrayIcon} from "@heroicons/react/24/solid"
-import { Form } from 'react-router-dom'
+import { Form,Link,Outlet } from 'react-router-dom'
 
-function Create() {
-  return (
+function Create(){
+    return (
     <div className="create">
         <div className="create-desc">
             <h1 className='create-desc-header'> Description </h1>
@@ -15,7 +14,7 @@ function Create() {
             </p>
         </div>
         <div className="create-form">
-            <Form className="create-form-r" method='post' encType="multipart/form-data">
+            <Form className='create-form-r' method="POST" encType='multipart/form-data'>
                 <label htmlFor="newImage">Add new image</label>
                 <input type="file" name='newImage' id='newImage' accept='.jpeg, .png, .jpg' required/>
                 <button type='submit' className='create-form-btn'>upload<ArrowUpTrayIcon width={20}/></button>

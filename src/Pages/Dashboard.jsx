@@ -20,7 +20,7 @@ export async function dashboardAction({ request }) {
     console.log(newRes.filename);
     const translatingObject = {
       "UpdateLanguage": "no",
-      "TargetLanguage": "hindi",
+      "TargetLanguage": "japanese",
       "ImageName": newRes.filename
     };
 

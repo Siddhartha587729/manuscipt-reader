@@ -1,6 +1,6 @@
 import "../Styles/create.css"
 import {ArrowUpTrayIcon} from "@heroicons/react/24/solid"
-import { Form,Link,Outlet } from 'react-router-dom'
+import { Form } from 'react-router-dom'
 
 function Create(){
     return (

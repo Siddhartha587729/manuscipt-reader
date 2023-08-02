@@ -1,0 +1,34 @@
+.footer{
+    display: flex;
+    flex-direction: column;
+    min-height: 50vh;
+    padding: 20px;
+    margin: 0px 50px;
+}
+
+hr{
+    width: 70%;
+}
+
+.line{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+}
+
+.fotter-head{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    height: 40vh;
+}
+.fotter-head-logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-icon{
+    display: flex;
+    flex-direction: column;
+}

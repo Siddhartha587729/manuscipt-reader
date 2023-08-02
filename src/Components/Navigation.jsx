@@ -5,7 +5,6 @@ import '../Styles/nav.css'
 import { useNavigate } from 'react-router-dom'
 
 
-
 function Navigation() {
     const navigate = useNavigate();
     const loginButton = ()=>{

@@ -40,11 +40,13 @@ const Login = () => {
                     <div className="overlay-left">
                         <h1 className="login">Welcome Back!</h1>
                         <p className="loginp">To Access your Account Please Enter your Credentials</p>
+                        <h3>OR</h3>
                         <button className="formbtn" id="signin" onClick={()=> setToggle(true)}>Sign Up</button>
                     </div>
                     <div className="overlay-right">
                         <h1 className="login">Hey There Welcome To Our Community </h1>
                         <p className="loginp">Unlock Execlusive Benefits,Let's Embark on This Journey Together!!</p>
+                        <h3>OR</h3>
                         <button className="formbtn" id="signup" onClick={()=> setToggle(false)}>Login</button>
                     </div>
                 </div>

@@ -16,7 +16,7 @@
     margin: 10px;
 }
 
-.create-form{
+/* .create-form{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,6 +25,99 @@
     height: 120px;
     width: 100%;
     margin: 10px 0;
+} */
+
+.create_form{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 300px;
+	background: whitesmoke;
+} 
+
+.container{
+	max-width: 600px;
+	width: 100%;
+    max-height: 250px;
+	background: #fff;
+	padding: 30px;
+	border-radius: 30px;
+}
+.img-area {
+	position: relative;
+	width: 100%;
+	height: 400px;
+	background: grey;
+	margin-bottom: 30px;
+	border-radius: 15px;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.img-area .icon {
+	font-size: 100px;
+}
+.img-area h3 {
+	font-size: 20px;
+	font-weight: 500;
+	margin-bottom: 6px;
+}
+.img-area p {
+	color: #999;
+}
+.img-area p span {
+	font-weight: 600;
+}
+.img-area img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	z-index: 100;
+}
+.img-area::before {
+	content: attr(data-img);
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .5);
+	color: #fff;
+	font-weight: 500;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	pointer-events: none;
+	opacity: 0;
+	transition: all .3s ease;
+	z-index: 200;
+}
+.img-area.active:hover::before {
+	opacity: 1;
+}
+.create-form-btn {
+	display: block;
+	width: 100%;
+	padding: 16px 0;
+    margin-top:50px;
+	border-radius: 15px;
+	background: blue;
+	color: #fff;
+	font-weight: 500;
+	font-size: 16px;
+	border: #fff;
+	cursor: pointer;
+	transition: all .3s ease;
+}
+.create-form-btn:hover {
+	background: darkblue;
 }
 
 /* .create-form button{

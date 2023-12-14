@@ -13,11 +13,16 @@ function Create(){
                 expedita culpa aperiam velit nemo dolores explicabo, obcaecati aliquam earum, iure illo atque temporibus voluptatum cumque!
             </p>
         </div>
-        <div className="create-form">
+        <div className="create_form">
             <Form className='create-form-r' method="POST" encType='multipart/form-data'>
+                <div className="container">
+                <div className="img-area">
+                <i class="fa-solid fa-cloud-arrow-up fa-beat"></i>   
                 <label htmlFor="newImage">Add new image</label>
-                <input type="file" name='newImage' id='newImage' accept='.jpeg, .png, .jpg' required/>
-                <button type='submit' className='create-form-btn'>upload<ArrowUpTrayIcon width={20}/></button>
+                <input type="file" name='newImage' id='newImage' accept='.jpeg, .png, .jpg'  required/>
+                </div>
+                <button type='submit' className='create-form-btn'>upload</button>
+                </div>
             </Form>
         </div>
         <div className="create-step">

@@ -1,6 +1,6 @@
-import script from '../images/navLogo.svg'
 import "../Styles/footer.css"
-import copr from "../images/copr.svg"
+/* import script from '../images/navLogo.svg' */
+/* import copr from "../images/copr.svg" */
 
 const Footer=()=> {
 

@@ -2,7 +2,7 @@ import Model from '../Components/Model.jsx';
 import Create from '../Components/Create.jsx';
 
 export function dashboardLoader() {
-  // This function is empty, you can add any necessary logic here.
+  // This function is empty, we will add any necessary logic here.
 }
 
 export async function dashboardAction({ request }) {

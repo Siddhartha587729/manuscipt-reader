@@ -1,5 +1,5 @@
 import "../Styles/model.css"
-import book from "../assets/scene.gltf"
+/* import book from "../assets/scene.gltf" */
 import Model1 from "./Model1"
 /* import { ModelViewer } from 'react-model-viewer'; */
 

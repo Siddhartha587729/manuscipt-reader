@@ -15,14 +15,12 @@ function Create(){
         </div>
         <div className="create_form">
             <Form className='create-form-r' method="POST" encType='multipart/form-data'>
-                <div className="container">
-                <div className="img-area">
-                <i class="fa-solid fa-cloud-arrow-up fa-beat"></i>   
-                <label htmlFor="newImage">Add new image</label>
-                <input type="file" name='newImage' id='newImage' accept='.jpeg, .png, .jpg'  required/>
-                </div>
-                <button type='submit' className='create-form-btn'>upload</button>
-                </div>
+                <label htmlFor="newImage" className="drop-container" id="dropcontainer">
+                <span className="drop-title">Drop files here</span>
+                or
+                <input type="file" name='newImage' id='newImage' accept='.jpeg, .png, .jpg' required/>
+                <button type='submit' className='create-form-btn'>upload<ArrowUpTrayIcon width={15}/></button> 
+                </label>
             </Form>
         </div>
         <div className="create-step">

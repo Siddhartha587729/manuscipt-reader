@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import "../Styles/model.css"
-import Ancientbook from './Ancientbook'
+/* import Ancientbook from './Ancientbook' */
 import Book from './Book'
 
 const Model1 = () => {

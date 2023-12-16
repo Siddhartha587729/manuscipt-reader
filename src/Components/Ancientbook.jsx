@@ -7,7 +7,7 @@ Source: https://sketchfab.com/3d-models/chained-medieval-library-book-8e4a74f2cb
 Title: Chained (medieval) library book
 */
 
-import React, { useRef } from 'react'
+import React from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export default function Model(props) {

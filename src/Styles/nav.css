@@ -6,6 +6,8 @@
 nav {
     display: -webkit-box;
     display: -ms-flexbox;
+    position: absolute;
+    left: 25px;
     display: flex;
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
@@ -27,7 +29,7 @@ nav a {
 }
 
 nav a:hover {
-    color: white;
+    color: #EC994B;
 }
 
 .nav_list {
@@ -61,10 +63,10 @@ nav a:hover {
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    color: white;
+    color: #EC994B;
     height: 30px;
     width: 100px;
-    background-color: #EC994B;
+    /* background-color: #EC994B; */
 }
 
 button {

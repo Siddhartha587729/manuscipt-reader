@@ -1,20 +1,22 @@
 .footer{
     display: flex;
     flex-direction: column;
-    min-height: 50vh;
-    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    min-height: 7vh;
     margin: 0px 50px;
 }
 
 hr{
     width: 70%;
+    height: 2px;
 }
 
 .line{
+    margin: 50px 0 0 0;
+    height: 2px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    height: 35px;
 }
 
 .fotter-head{
@@ -30,5 +32,18 @@ hr{
 
 .footer-icon{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    width: 1000px;
+}
+
+.footer-icon-left{
+    width: 100%;
+}
+.footer-icon-right{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 10px;
 }

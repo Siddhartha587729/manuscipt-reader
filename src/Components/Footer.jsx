@@ -6,26 +6,22 @@ const Footer=()=> {
 
 
   return (
-    <div className="footer">
+    <>
       <div className="line"><hr/></div>
-      <div className="fotter-head">
-        <div className="fotter-head-logo">
-          <img src={script} alt="logo" width={70}/>
-        </div>
-        <div className="footer-head-link"></div>
-      </div>
-      <div className="line"><hr/></div>
-      <div className="footer-icon">
-        <div className="footer-icon-left">
-          <img src={copr}alt="copright" />
-          <span>{" "}2023 Manuscript Reader</span>
-        </div>
-        <div className="footer-icon-right">
-          
+      <div className="footer">
+        <div className="footer-icon">
+          <div className="footer-icon-left">
+            <i className="fa-regular fa-copyright"></i>
+            <span>{" "}2023 Manuscript Reader</span>
+          </div>
+          <div className="footer-icon-right">
+              <i className="fa-brands fa-github"></i>
+              <i className="fa-solid fa-globe"></i>
+              <i className="fa-brands fa-twitter"></i>
+          </div>
         </div>
       </div>
-      
-    </div>
+    </>
   )
 }
 

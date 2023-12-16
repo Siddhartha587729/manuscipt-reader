@@ -10,7 +10,7 @@ const Model1 = () => {
         <div className="model-viewer">
             <Canvas className="canvas_h">
                 <OrbitControls enableZoom={false} />
-                <ambientLight intensity={3} />
+                <ambientLight intensity={1.5} />
                 <directionalLight position={[-1, 4, 1]} />
                 <Suspense fallback={null}>
                     <Book />

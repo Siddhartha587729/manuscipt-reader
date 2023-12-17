@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom'
 function Navigation() {
     const navigate = useNavigate();
     const loginButton = ()=>{
-        console.log("hi");
         navigate("/login")
     }
   return (

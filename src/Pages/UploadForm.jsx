@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import * as XLSX from 'xlsx';
+import {client} from '../client';
+import { AiOutlineCloudUpload } from 'react-icons/ai'
+import { MdDelete } from 'react-icons/md'
+import { useNavigate } from 'react-router-dom';
 
 const UploadForm = () => {
   const [data, setData] = useState();
   const [coverPic, setCoverPic] = useState(null);
-
+  const [title,setTitle] = useState('');
+  const [organisation, setOrganisation] = useState('');
+  const [imageAsset, setImageAsset] = useState();
+  const navigate = useNavigate();
   const handleFile = (e) => {
     const reader = new FileReader();
     reader.readAsBinaryString(e.target.files[0]);
@@ -17,9 +24,19 @@ const UploadForm = () => {
       setData(parsedData);
     };
   };
+  console.log(data)
 
   const handleCoverPic = (e) => {
     const file = e.target.files[0];
+    if(file.type === 'image/png' || file.type === 'image/jpg' || file.type === 'image/gif' || file.type === 'image/svg' || file.type === 'image/tiff'|| file.type === 'image/jpeg'){
+      client.assets
+      .upload('image',file,{content:file.type,filename:file.name})
+      .then((doc)=>{
+        setImageAsset(doc);
+      })
+    }else{
+      <h1 className='bg-red-600 text-white text-xl'>Wrong Image Type</h1>
+    }
     const reader = new FileReader();
     reader.onloadend = () => {
       setCoverPic(reader.result);
@@ -28,16 +45,10 @@ const UploadForm = () => {
       reader.readAsDataURL(file);
     }
   };
-
   const [formData, setFormData] = useState({
     author: '',
     title: '',
     organisation: '',
-    coverNo: '',
-    genre: '',
-    classId: '',
-    pageNo: '',
-    cpd: '',
   });
 
   const handleChange = (e) => {
@@ -50,24 +61,69 @@ const UploadForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can perform any action with the form data here, such as sending it to a server.
-    console.log('Form Data:', formData);
+    console.log(imageAsset?._id)
+    if(formData.author && formData.title && formData.organisation && imageAsset?._id) {
+      const doc={
+        _type:'author',
+        username:'Sahil Kumar',
+        author: formData.author,
+        title: formData.title,
+        organisation: formData.organisation,
+        image:"aksdaksdhakbd",
+        coverImage:{
+          _type:'image',
+          asset:{
+              _type:'reference',
+              _ref:imageAsset?._id,
+          }
+        }
+      }   
+      client.create(doc)
+              .then(()=>{
+                  navigate('/');
+              })    
+    }
   };
 
   return (
     <>
       <div className="flex flex-col md:flex-row justify-around gap-8 m-4">
-        <div className="flex flex-col items-center space-y-2">
+        <div className="flex flex-col space-y-2">
           <div className="border-dotted border h-80 w-80 relative">
-            {coverPic && (
-              <img
-                src={coverPic}
-                alt="Cover Preview"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            )}
+          {!imageAsset ? (
+                            <>
+                            <label htmlFor="file" className="cursor-pointer">
+                                <div className='flex flex-col items-center justify-center '>
+                                    <div className="flex flex-col justify-center items-center">
+                                        <p className="font-bold text-2xl mt-10 py-10">
+                                            <AiOutlineCloudUpload/>
+                                        </p>
+                                        <p className="text-lg">Click to Upload</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <input
+                             type="file"
+                             id="file"
+                             name="file"
+                             onChange={handleCoverPic}
+                             className="hidden"
+                            />
+                            </>
+                        ): (
+                            <div className="relative h-full">
+                                <img src={imageAsset?.url} className="w-600 h-300" alt="uploaded-pic" />
+                                <button
+                                    type="button"
+                                    className="absolute bottom-3 right-3 p-3 rounded-full bg-white text-xl cursor-pointer outline-none"
+                                    onClick={()=>setImageAsset(null)}
+                                >
+                                    <MdDelete />
+                                </button>
+                            </div>
+                        )}
           </div>
-          <div className="text-gray-500 space-y-1">
+          <div className="text-gray-500 flex flex-col justify-center items-start">
             <p>Uploaded by :</p>
             <p>Date of upload :</p>
             <p>Time of upload :</p>
@@ -82,6 +138,7 @@ const UploadForm = () => {
                 id="author"
                 name="author"
                 value={formData.author}
+                placeholder='Write the Author'
                 onChange={handleChange}
                 className="border border-gray-300 p-2 w-full text-sm"
               />
@@ -110,89 +167,17 @@ const UploadForm = () => {
                 className="border border-gray-300 p-2 w-full text-sm"
               />
             </div>
-
-            <div className="mb-2">
-              <label htmlFor="coverNo" className="text-sm">Cover No.</label>
-              <input
-                type="text"
-                id="coverNo"
-                name="coverNo"
-                value={formData.coverNo}
-                onChange={handleChange}
-                className="border border-gray-300 p-2 w-full text-sm"
-              />
-            </div>
-
-            <div className="mb-2">
-              <label htmlFor="genre" className="text-sm">Genre</label>
-              <input
-                type="text"
-                id="genre"
-                name="genre"
-                value={formData.genre}
-                onChange={handleChange}
-                className="border border-gray-300 p-2 w-full text-sm"
-              />
-            </div>
-
-            <div className="mb-2">
-              <label htmlFor="classId" className="text-sm">Class id</label>
-              <input
-                type="text"
-                id="classId"
-                name="classId"
-                value={formData.classId}
-                onChange={handleChange}
-                className="border border-gray-300 p-2 w-full text-sm"
-              />
-            </div>
-
-            <div className="mb-2">
-              <label htmlFor="pageNo" className="text-sm">Page No.</label>
-              <input
-                type="text"
-                id="pageNo"
-                name="pageNo"
-                value={formData.pageNo}
-                onChange={handleChange}
-                className="border border-gray-300 p-2 w-full text-sm"
-              />
-            </div>
-
-            <div className="mb-2">
-              <label htmlFor="cpd" className="text-sm">CPD</label>
-              <input
-                type="text"
-                id="cpd"
-                name="cpd"
-                value={formData.cpd}
-                onChange={handleChange}
-                className="border border-gray-300 p-2 w-full text-sm"
-              />
-            </div>
-
-            <div className="mb-2">
-              <label htmlFor="coverPic" className="text-sm">Upload Cover Pic</label>
-              <input
-                type="file"
-                id="coverPic"
-                name="coverPic"
-                onChange={handleCoverPic}
-                className="border border-gray-300 p-2 w-full text-sm"
-              />
-            </div>
-
             <div className="mb-2">
               <label htmlFor="excelFile" className="text-sm">Upload Excel</label>
               <input
                 type="file"
                 id="excelFile"
                 name="excelFile"
+                accept='.xlsx'
                 onChange={handleFile}
                 className="border border-gray-300 p-2 w-full text-sm"
               />
             </div>
-
             <button type="submit" className="bg-orange-400 border-2 border-orange-900 rounded-full py-2">
               Upload
             </button>
@@ -200,7 +185,7 @@ const UploadForm = () => {
         </div>
       </div>
     </>
-  );
+  )
 };
 
 export default UploadForm;

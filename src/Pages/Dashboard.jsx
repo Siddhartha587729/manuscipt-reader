@@ -1,5 +1,6 @@
 import Model from '../Components/Model.jsx';
 import Create from '../Components/Create.jsx';
+import Preview from '../Components/Preview.jsx';
 
 export function dashboardLoader() {
   // This function is empty, we will add any necessary logic here.
@@ -53,6 +54,7 @@ function Dashboard() {
   return (
     <div>
       <Model />
+      <Preview />
       <Create />
     </div>
   );

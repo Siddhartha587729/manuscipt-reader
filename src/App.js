@@ -4,6 +4,7 @@ import Dashboard, { dashboardAction } from './Pages/Dashboard';
 import Login from "./Pages/Login";
 import Main from "./Layout/Main";
 import Display from "./Pages/Display";
+import UploadForm from "./Pages/UploadForm";
 
 
 const router = createBrowserRouter([
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/display",
         element: <Display/>
+      },
+      {
+        path:'/upload',
+        element:<UploadForm/>
       }
     ]
   },

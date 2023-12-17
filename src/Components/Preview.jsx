@@ -1,5 +1,5 @@
 import React from 'react'
-import UploadForm from './UploadForm'
+import UploadForm from '../Pages/UploadForm'
 
 const Tile= ({fr}) =>{
     return (

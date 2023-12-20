@@ -1,5 +1,9 @@
 @tailwind base;
 @tailwind components;
+.formItems{
+  @apply mb-2 flex flex-col items-start w-full
+}
+
 @tailwind utilities;
 /* body {
   @apply m-0 font-sans antialiased;

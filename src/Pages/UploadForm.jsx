@@ -11,6 +11,7 @@ const UploadForm = () => {
   const [title, setTitle] = useState('');
   const [organisation, setOrganisation] = useState('');
   const [imageAsset, setImageAsset] = useState();
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleFile = (e) => {
@@ -21,7 +22,7 @@ const UploadForm = () => {
       const workBook = XLSX.read(data, { type: 'binary' });
       const sheetName = workBook.SheetNames[0];
       const sheet = workBook.Sheets[sheetName];
-      const parsedData = XLSX.utils.sheet_to_json(sheet,{defval:"NaN"});
+      const parsedData = XLSX.utils.sheet_to_json(sheet, { defval: "NaN" });
       setData(parsedData);
     };
   };
@@ -29,20 +30,24 @@ const UploadForm = () => {
   console.log(data);
 
   const handleCoverPic = (e) => {
+    setLoading(true);
+
     const file = e.target.files[0];
     if (
       file.type === 'image/png' ||
       file.type === 'image/jpg' ||
       file.type === 'image/gif' ||
       file.type === 'image/svg' ||
-      file.type === 'image/tiff'||
+      file.type === 'image/tiff' ||
       file.type === 'image/jpeg'
     ) {
       client.assets.upload('image', file, { content: file.type, filename: file.name }).then((doc) => {
         setImageAsset(doc);
+        setLoading(false);
       });
     } else {
       console.error('Wrong Image Type');
+      setLoading(false);
     }
 
     const reader = new FileReader();
@@ -96,15 +101,16 @@ const UploadForm = () => {
 
   return (
     <>
-      <div className="h-screen flex flex-col md:flex-row justify-around gap-8 m-4 items-center">
+      <div className="h-[650px] flex flex-col md:flex-row justify-around gap-8 m-4 items-center">
         <div className="flex flex-col space-y-2">
           <div className="border-dotted border h-80 w-80 relative">
             {!imageAsset ? (
-              <>
-                <label htmlFor="file" className="cursor-pointer">
+              <div className='h-full flex items-center justify-center'>
+                {loading && <p>Loading...</p>}
+                <label htmlFor="file" className="cursor-pointer ">
                   <div className="flex flex-col items-center justify-center ">
                     <div className="flex flex-col justify-center items-center">
-                      <p className="font-bold text-2xl mt-10 py-10">
+                      <p className="font-bold text-2xl ">
                         <AiOutlineCloudUpload />
                       </p>
                       <p className="text-lg">Click to Upload</p>
@@ -112,7 +118,7 @@ const UploadForm = () => {
                   </div>
                 </label>
                 <input type="file" id="file" name="file" onChange={handleCoverPic} className="hidden" />
-              </>
+              </div>
             ) : (
               <div className="relative h-full">
                 <img src={imageAsset?.url} className="w-full h-full" alt="uploaded-pic" />
@@ -128,13 +134,11 @@ const UploadForm = () => {
           </div>
           <div className="text-gray-500 flex flex-col justify-center items-start">
             <p>Uploaded by :</p>
-            <p>Date of upload :</p>
-            <p>Time of upload :</p>
           </div>
         </div>
-        <div className="flex flex-col w-full md:w-96 ">
-          <form onSubmit={handleSubmit} className="h-fit border border-gray-300 p-4 space-y-4">
-            <div className="mb-2">
+        <div className="flex w-full md:w-96 ">
+          <form onSubmit={handleSubmit} className="h-fit border border-gray-300 p-4 space-y-4 flex items-start">
+            <div className="formItems">
               <label htmlFor="author" className="text-sm">
                 Author
               </label>
@@ -143,13 +147,13 @@ const UploadForm = () => {
                 id="author"
                 name="author"
                 value={formData.author}
-                placeholder="Write the Author"
+                /*placeholder="Write the Author" */
                 onChange={handleChange}
                 className="border border-gray-300 p-2 w-full text-sm"
               />
             </div>
 
-            <div className="mb-2">
+            <div className="formItems">
               <label htmlFor="title" className="text-sm">
                 Title
               </label>
@@ -163,7 +167,7 @@ const UploadForm = () => {
               />
             </div>
 
-            <div className="mb-2">
+            <div className="formItems">
               <label htmlFor="organisation" className="text-sm">
                 Organisation
               </label>
@@ -189,9 +193,11 @@ const UploadForm = () => {
                 className="border border-gray-300 p-2 w-full text-sm"
               />
             </div>
-            <button type="submit" className="bg-orange-400 border-2 border-orange-900 rounded-full py-2">
-              Upload
-            </button>
+            <div className='flex items-center formItems'>
+              <button type="submit" className="bg-orange-400 border-2 border-orange-900 rounded-full py-2">
+                Upload
+              </button>
+            </div>
           </form>
         </div>
       </div>

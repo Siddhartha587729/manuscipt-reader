@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { client } from '../client';
+import { fetchuser } from '../utils/data';
 
 const Tile = ({ fr }) => {
+  client.fetch(fetchuser)
+        .then((doc)=>{
+          console.log(doc);
+        })
   return (
     <>
       <div className='relative'>

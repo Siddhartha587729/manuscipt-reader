@@ -27,8 +27,6 @@ const UploadForm = () => {
     };
   };
 
-  console.log(data);
-
   const handleCoverPic = (e) => {
     setLoading(true);
 
@@ -76,7 +74,6 @@ const UploadForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(imageAsset?._id);
     if (formData.author && formData.title && formData.organisation && imageAsset?._id) {
       const doc = {
         _type: 'author',
@@ -93,12 +90,47 @@ const UploadForm = () => {
           },
         },
       };
-      client.create(doc).then(() => {
+      
+      client.create(doc).then((res) => {
+        const id = res._id;
+        console.log(res._id);
+        let doc2={}
+        for (let i = 0; i < data?.length; i++) {
+          doc2 = {
+            _type: 'script',
+            classId: data[i]['Class id'],
+            title: data[i]['Title'],
+            genre:data[i]['Genre'],
+            CPD: data[i]['CPD'],
+            pageNo: data[i]['Page No.'],
+            language:data[i]['Language'],
+            letters:data[i]['Letters'],
+            noOfPlamLeaves:data[i]['a)Number of Palm Leaves']==='NaN'? 0 : data[i]['a)Number of Palm Leaves'],
+            details: data[i]['b)Details of folios'],
+            folio_number: data[i]['c)Folio No.'],
+            size:data[i]['a)Size'],
+            hole_position:data[i]['b)Hole Position'],
+            paints:data[i]['c)Paints'],
+            condition:data[i]['d)Condition'],
+            line:data[i]['e)Lines'] === 'NaN' ? 0 : data[i]['e)Lines'],
+            dimmentions:data[i]['Dimmentions'],
+            density:data[i]['Density of Letters'],
+            begining: data[i]['Beginning'],
+            end: data[i]['End'],
+            coloPhone: data[i]['Colophone'],
+            notes: data[i]['Notes'],
+            remarks: data[i]['Remarks'],
+            author:{
+              _type:'author',
+              _ref:id
+            }
+          }
+          client.create(doc2);
+        }
         navigate('/');
       });
     }
-  };
-
+  }
   return (
     <>
       <div className="h-[650px] flex flex-col md:flex-row justify-around gap-8 m-4 items-center">

@@ -33,7 +33,7 @@ const UploadForm = () => {
       file.type === 'image/jpg' ||
       file.type === 'image/gif' ||
       file.type === 'image/svg' ||
-      file.type === 'image/tiff' ||
+      file.type === 'image/tiff'||
       file.type === 'image/jpeg'
     ) {
       client.assets.upload('image', file, { content: file.type, filename: file.name }).then((doc) => {

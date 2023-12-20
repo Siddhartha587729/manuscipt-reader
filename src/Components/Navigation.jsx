@@ -11,7 +11,7 @@ function Navigation() {
         navigate("/login")
     }
   return (
-    <nav>
+    <nav className='px-4'>
         <div className="logo">
             <Link to="/"><img src={script} alt="my logo" width="50" height="50"/></Link>
         </div>

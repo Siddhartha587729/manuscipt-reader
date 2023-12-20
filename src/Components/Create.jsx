@@ -6,7 +6,7 @@ function Create(){
     return (
     <div className="create">
         <div className="create-desc">
-            <h1 className='create-desc-header'> Description </h1>
+            <h1 className='create-desc-header text-4xl cursor-pointer hover:text-orange-600'> Description </h1>
             <p className='create-desc-body'>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti nisi id pariatur quaerat, porro tempore aut asperiores? 
                 Impedit molestias iure minus quos quas beatae magnam! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore 

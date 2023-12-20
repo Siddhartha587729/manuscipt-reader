@@ -1,15 +1,15 @@
 import "../Styles/model.css"
-/* import book from "../assets/scene.gltf" */
+//import book from "../assets/scene.gltf"
 import Model1 from "./Model1"
-/* import { ModelViewer } from 'react-model-viewer'; */
+//import { ModelViewer } from 'react-model-viewer';
 
 function Model() {
   return (
-    <div className="top_bar">
+    <div className="top_bar font-sans">
         <div className="left_bar">
             <div className="left-bar-head">
-                <h4>Create your own digital </h4>
-                <h1><span className="left-bar-head-span">Manuscript</span></h1>
+                <h4 className="font-medium ">Create your own digital </h4>
+                <h1 className=""><span className="left-bar-head-span font-medium ">Manuscript</span></h1>
                 <h5 className="word_wrap">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore, 
                 maiores. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, repellat.</h5>
             </div>
@@ -27,3 +27,4 @@ function Model() {
 }
 
 export default Model 
+

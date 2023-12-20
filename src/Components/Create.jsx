@@ -1,5 +1,6 @@
 import "../Styles/create.css"
 import {ArrowUpTrayIcon} from "@heroicons/react/24/solid"
+import { MdCloudUpload } from "react-icons/md";
 import { Form } from 'react-router-dom'
 
 function Create(){
@@ -19,7 +20,7 @@ function Create(){
                 <span className="drop-title">Drop files here</span>
                 or
                 <input type="file" name='newImage' id='newImage' accept='.jpeg, .png, .jpg' required/>
-                <button type='submit' className='create-form-btn'>upload<ArrowUpTrayIcon width={15}/></button> 
+                <button type='submit' className='create-form-btn'>upload<MdCloudUpload /></button> 
                 </label>
             </Form>
         </div>

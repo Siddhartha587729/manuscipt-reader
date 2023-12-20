@@ -1,5 +1,4 @@
 import "../Styles/create.css"
-import {ArrowUpTrayIcon} from "@heroicons/react/24/solid"
 import { MdCloudUpload } from "react-icons/md";
 import { Form } from 'react-router-dom'
 

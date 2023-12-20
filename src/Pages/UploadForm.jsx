@@ -8,8 +8,8 @@ import { useNavigate } from 'react-router-dom';
 const UploadForm = () => {
   const [data, setData] = useState();
   const [coverPic, setCoverPic] = useState(null);
-  const [title, setTitle] = useState('');
-  const [organisation, setOrganisation] = useState('');
+  /* const [title, setTitle] = useState('');
+  const [organisation, setOrganisation] = useState(''); */
   const [imageAsset, setImageAsset] = useState();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();

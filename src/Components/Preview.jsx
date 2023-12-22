@@ -39,7 +39,7 @@ const Preview = () => {
         console.error('Error fetching data:', error);
       }
     };
-
+  
     fetchData();
   }, []);
 

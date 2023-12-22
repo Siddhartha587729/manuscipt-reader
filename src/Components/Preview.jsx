@@ -4,7 +4,6 @@ import { client } from '../client';
 import { fetchuser } from '../utils/data';
 
 const Tile = ({ index, item }) => {
-  console.log(item);
   const url = item.coverImage.asset.url
   //console.log(url)
   return (
@@ -42,9 +41,6 @@ const Preview = () => {
   
     fetchData();
   }, []);
-
-
-  /* console.log(data) */
 
   const handleUploadClick = () => {
     navigate('/upload');

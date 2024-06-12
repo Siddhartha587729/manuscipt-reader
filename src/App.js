@@ -5,6 +5,8 @@ import Login from "./Pages/Login";
 import Main from "./Layout/Main";
 import Display from "./Pages/Display";
 import UploadForm from "./Pages/UploadForm";
+import Team from "./Components/Team";
+import Signup from "./Pages/Signup";
 
 
 const router = createBrowserRouter([
@@ -20,6 +22,14 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login/>,
+      },
+      {
+        path: "/signup",
+        element: <Signup/>,
+      },
+      {
+        path: "/team",
+        element: <Team/>,
       },
       {
         path: "/display/:id",

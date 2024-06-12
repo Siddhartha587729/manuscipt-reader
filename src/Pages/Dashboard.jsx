@@ -54,8 +54,8 @@ function Dashboard() {
   return (
     <div>
       <Model />
-      <Preview />
       <Create />
+      <Preview />
     </div>
   );
 }

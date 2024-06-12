@@ -7,8 +7,8 @@ import Book from './Book'
 
 const Model1 = () => {
     return ( 
-        <div className="model-viewer">
-            <Canvas className="canvas_h">
+        <div className="model-viewer -translate-y-20 lg:-translate-y-10 h-[80vh] lg:h-[90vh] flex justify-center items-center">
+            <Canvas className="canvas_h ">
                 <OrbitControls enableZoom={false} />
                 <ambientLight intensity={1.5} />
                 <directionalLight position={[-1, 4, 1]} />

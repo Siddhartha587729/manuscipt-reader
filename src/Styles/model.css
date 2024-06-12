@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
 }
+
 /* https://colorhunt.co/palette/15133c73777bec994bf1eee9 */
 
 model-viewer {
@@ -48,20 +49,22 @@ model-viewer {
     width: 50%;
 }
 
-.left-bar-head-span{
+.left-bar-head-span {
     font-size: 80px;
     color: #15133C;
 }
-.left-bar-head h4{
+
+.left-bar-head h4 {
     font-size: 20px;
     color: #EC994B;
 }
 
-.word_wrap{
-    width: 500px;
+.word_wrap {
+    width: 600px;
+
 }
 
-.canvas_h canvas{
+.canvas_h canvas {
     height: 90vh !important;
     align-items: center;
 }

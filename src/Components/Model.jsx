@@ -5,7 +5,7 @@ import Model1 from "./Model1"
 
 function Model() {
   return (
-    <div className="top_bar font-sans">
+    <div className="top_bar font-sans flex-col xl:flex-row">
       <div className="left_bar">
         <div className="left-bar-head">
           <div className="flex flex-col">

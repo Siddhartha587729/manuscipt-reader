@@ -5,6 +5,9 @@ import script from '../images/navLogo.svg'
 import { Link } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 
+/* const USER_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%]).{8,24}$/; */
+
 const Login = () => {
 
     return (

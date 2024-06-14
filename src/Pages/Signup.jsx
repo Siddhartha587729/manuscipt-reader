@@ -2,26 +2,30 @@ import Lottie from "lottie-react";
 import '../Styles/signup.css';
 import signup from "../images/signup.json";
 import script from '../images/navLogo.svg';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { useRef, useState, useEffect } from "react";
 import { FaCheck } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import { CiCircleInfo } from "react-icons/ci";
-import axios from '../api/axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { client } from '../client';
+import bcrypt from "bcryptjs-react"
+
 
 const USER_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%]).{8,24}$/;
-const REGISTER_URL = '/register';
 
 const Login = () => {
+    const navigate = useNavigate();
     const userRef = useRef();
 
     const [user, setUser] = useState('');
     const [validName, setValidName] = useState(false);
     const [userFocus, setUserFocus] = useState(false);
+
+    const [role, setRole] = useState('');
 
     const [pwd, setPwd] = useState('');
     const [validPwd, setValidPwd] = useState(false);
@@ -54,6 +58,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         console.log(user)
         console.log(pwd)
+        console.log(role)
         e.preventDefault();
         const v1 = USER_REGEX.test(user);
         const v2 = PWD_REGEX.test(pwd);
@@ -62,20 +67,37 @@ const Login = () => {
             return;
         }
         try {
-            const response = await axios.post(REGISTER_URL,
-                JSON.stringify({ user, pwd }),
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
-            );
+            const query = '*[_type == "user" && email == $email]';
+            const params = { email: user };
+            const existingUsers = await client.fetch(query, params);
+
+            if (existingUsers.length > 0) {
+                setErrMsg("User already exists")
+                setTimeout(() => {
+                    navigate('/login');
+                }, 2000);
+                return { error: 'User already exists' };
+            }
+
+            const hashedPwd = await bcrypt.hash(pwd, 10);
+            const doc = {
+                _type: 'user',
+                email: user,
+                password: hashedPwd,
+                role: role
+            };
+            const response = await client.create(doc);
             console.log(response?.data);
             console.log(response?.accessToken);
-            console.log(JSON.stringify(response));
+            const data = JSON.stringify(response)
+            console.log(data);
             setSuccess(true);
             setUser('');
             setPwd('');
             setMatchPwd('');
+            setTimeout(() => {
+                navigate('/');
+            }, 2000);
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
@@ -84,7 +106,7 @@ const Login = () => {
             } else {
                 setErrMsg('Registration Failed');
             }
-            
+
         }
     };
     useEffect(() => {
@@ -92,7 +114,7 @@ const Login = () => {
             toast.error(errMsg);
         }
     }, [errMsg]);
-    
+
 
     return (
         <>
@@ -182,10 +204,26 @@ const Login = () => {
                                         <div className="w-full flex justify-around">
                                             <span className="font-bold">Role:</span>
                                             <label htmlFor="roleAdmin">
-                                                <input type="radio" name="role" id="roleAdmin" value="admin" /> Administrator
+                                                <input
+                                                    type="radio"
+                                                    name="role"
+                                                    id="roleAdmin"
+                                                    value="administrator"
+                                                    checked={role === 'administrator'}
+                                                    onChange={(e) => setRole(e.target.value)}
+                                                    required
+                                                /> Administrator
                                             </label>
                                             <label htmlFor="roleStudent">
-                                                <input type="radio" name="role" id="roleStudent" value="student" /> Student
+                                                <input
+                                                    type="radio"
+                                                    name="role"
+                                                    id="roleStudent"
+                                                    value="student"
+                                                    checked={role === 'student'}
+                                                    onChange={(e) => setRole(e.target.value)}
+                                                    required
+                                                /> Student
                                             </label>
                                         </div>
                                         <button

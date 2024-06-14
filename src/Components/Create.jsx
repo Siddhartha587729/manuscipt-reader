@@ -3,8 +3,71 @@ import { MdCloudUpload } from "react-icons/md";
 import { Form, Link } from 'react-router-dom'
 import Lottie from 'react-lottie';
 import upload from '../images/ocr.json'
+import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+
+
 
 function Create() {
+    const [text, setText] = useState(null);
+    const [errMsg, setErrMsg] = useState('');
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const data = new FormData(event.target);
+        const { newImage } = Object.fromEntries(data.entries());
+
+        console.log(`${newImage.name} Uploaded`);
+
+        data.append("file", newImage, newImage.name);
+
+        const requestOptions = {
+            method: 'POST',
+            body: data
+        };
+
+        try {
+            const uploadResponse = await fetch("http://127.0.0.1:8000/UploadImages/", requestOptions);
+            const uploadResult = await uploadResponse.json();
+            console.log(`${uploadResult.filename} Object created`);
+
+            const translatingObject = {
+                "UpdateLanguage": "no",
+                "TargetLanguage": "hindi",
+                "ImageName": uploadResult.filename
+            };
+
+            const translateResponse = await fetch("http://127.0.0.1:8000/translate", {
+                method: 'POST',
+                body: JSON.stringify(translatingObject),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            const translateResult = await translateResponse.json();
+            console.log(translateResult);
+            console.log(translateResult.Originaltext);
+            console.log(translateResult.Translatedtext);
+
+            if (translateResult) {
+                setText(translateResult);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+
+    }
+    useEffect(() => {
+        setErrMsg('');
+    }, [text]);
+
+    useEffect(() => {
+        if (errMsg) {
+            toast.error(errMsg);
+        }
+    }, [errMsg]);
+
     const defaultOptions = {
         loop: true,
         autoplay: true,
@@ -33,7 +96,7 @@ function Create() {
             </div>
             <div className="w-full p-4 h-1/2 flex justify-center ">
                 <div className="flex border-2 border-dashed border-[#81b5e0] rounded-xl w-[80%] p-5 bg-[#C0D6E8]">
-                    <Form className="bg-transparent w-full min-h-[40vh]" method="POST" encType='multipart/form-data'>
+                    <Form onSubmit={handleSubmit} className="bg-transparent w-full min-h-[40vh]" method="POST" encType='multipart/form-data'>
                         <div className="z-10 w-full lg:flex gap-5 items-center">
                             <div
                                 className="lg:w-1/2 flex justify-center items-center"
@@ -55,9 +118,25 @@ function Create() {
                     </Form>
                 </div>
             </div>
-            <div className="create-step">
-                {/* <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia, suscipit.</p> */}
-            </div>
+            {
+                text ? (
+                    <div className=" w-full flex justify-center items-center gap-2">
+                        <div className=" min-h-[10vh] w-[70%] flex justify-between">
+                            <div className="flex flex-col gap-2 m-2 ">
+                                <span className="font-bold font-serif">Original Text</span>
+                                <span>{text.Originaltext}</span>
+                            </div>
+                            <div className="w-1 border-2"></div>
+                            <div className="flex flex-col gap-2  m-2">
+                                <span className="font-bold font-serif">Translated Text</span>
+                                <span>{text.Translatedtext}</span>
+                            </div>
+                        </div>
+                    </div>
+                ) : (
+                    <ToastContainer />
+                )
+            }
         </div>
     )
 }

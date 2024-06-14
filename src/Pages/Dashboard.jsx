@@ -7,9 +7,11 @@ export function dashboardLoader() {
 }
 
 export async function dashboardAction({ request }) {
+  /* 
+
   const data = await request.formData();
   const { ...values } = Object.fromEntries(data);
-  console.log(values.newImage.name);
+  console.log(values.newImage.name + "Uploaded");
 
   data.append("file", values.newImage, values.newImage.name);
 
@@ -18,10 +20,10 @@ export async function dashboardAction({ request }) {
     body: data
   };
   const afterFetch = (newRes) => {
-    console.log(newRes.filename);
+    console.log(newRes.filename + "Translating...");
     const translatingObject = {
       "UpdateLanguage": "no",
-      "TargetLanguage": "japanese",
+      "TargetLanguage": "hindi",
       "ImageName": newRes.filename
     };
 
@@ -35,6 +37,11 @@ export async function dashboardAction({ request }) {
     .then(response => response.json())
     .then(function(response){
       console.log(response);
+      console.log(response.Originaltext);
+      console.log(response.Translatedtext);
+      if(response){
+        setText(response)
+      }
     }) 
   };
 
@@ -42,11 +49,11 @@ export async function dashboardAction({ request }) {
     .then(response => response.json())
     .then(function (response) {
       console.log(response);
-      console.log(response.filename);
+      console.log(response.filename+"Object created");
       afterFetch(response);
     });
 
-  return data;
+  return data; */
 }
 
 function Dashboard() {

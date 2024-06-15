@@ -7,6 +7,8 @@ import Display from "./Pages/Display";
 import UploadForm from "./Pages/UploadForm";
 import Team from "./Components/Team";
 import Signup from "./Pages/Signup";
+import RequireAuth from "./Components/RequireAuth";
+import Unauthorized from "./Components/Unauthorized";
 
 
 const router = createBrowserRouter([
@@ -32,13 +34,27 @@ const router = createBrowserRouter([
         element: <Team/>,
       },
       {
-        path: "/display/:id",
-        element: <Display/>
+        element: <RequireAuth allowedRoles={["student","administrator"]}/>,
+        children:[
+          {
+            path: "/display/:id",
+            element: <Display/>
+          },
+        ]
       },
       {
-        path:'/upload',
-        element:<UploadForm/>
-      }
+        element: <RequireAuth allowedRoles={["administrator"]}/>,
+        children:[
+          {
+            path:'/upload',
+            element:<UploadForm/>
+          }
+        ]
+      },
+      {
+        path: "/unauthorized",
+        element: <Unauthorized/>,
+      },
     ]
   },
   

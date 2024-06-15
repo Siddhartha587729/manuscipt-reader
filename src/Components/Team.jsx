@@ -6,19 +6,19 @@ import Lottie from "lottie-react";
 import team from '../images/team.json'
 
 function Team() {
-    const style={
-        width:'100px'
+    const style = {
+        width: '100px'
     }
     return (
         <div className='flex-col gap-5 p-5'>
             <div className='h-1/4 flex-col'>
                 <div className='flex justify-center mb-6'>
-                    <Lottie style={style} animationData={team}/>
+                    <Lottie style={style} animationData={team} />
                 </div>
                 <div className='flex justify-center text-4xl font-semibold'>Our Team is like no other.</div>
                 <div className='flex justify-center items-center mt-8 text-center '>
                     <span className='sm:w-[60rem]'>
-                        Decription Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quaerat, ex nobis consequuntur doloremque ab ratione a soluta assumenda maiores, illum omnis voluptatem veritatis dolorem excepturi.
+                        The success of this project is a testament to the dedication, expertise, and synergy of our dynamic team. Comprising diverse professionals, each member brought unique skills and perspectives, contributing to a well-rounded and innovative approach. Here's a glimpse into the team that made this project possible:
                     </span>
                 </div>
             </div>
@@ -33,9 +33,14 @@ function Team() {
                         <div className='w-1/6 flex justify-center p-2'> <div className='h-full border-2 w-full flex justify-center items-center rounded-2xl hover:scale-105 hover:shadow-lg duration-200'><img src={mem1} alt="Displayed Content" className="w-full h-full object-cover rounded-2xl" /></div></div>
                     </div>
                 </div>
-                <div className='flex justify-evenly mt-20 gap-10 '>
-                    <div className='h-full rounded-2xl flex justify-center items-center'><img width={200} src={kiit} alt="" /></div>
-                    <div className='h-full rounded-2xl flex justify-center items-center'><img width={300} src={otani} alt="" /></div>
+                <div className='flex flex-col mt-20'>
+                    <div className='flex justify-center items-center mb-5'>
+                        <span className='text-4xl font-semibold '>Collaborators</span>
+                    </div>
+                    <div className='flex justify-evenly gap-10 '>
+                        <div className='h-full rounded-2xl flex justify-center items-center'><img width={200} src={kiit} alt="" /></div>
+                        <div className='h-full rounded-2xl flex justify-center items-center'><img width={300} src={otani} alt="" /></div>
+                    </div>
                 </div>
             </div>
         </div>

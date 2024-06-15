@@ -1,0 +1,27 @@
+
+input[type=text] {
+    min-height: 45px;
+    width: 350px;
+    max-width: 100%;
+    color: #444;
+    padding: 5px;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid #81b5e0;
+  }
+
+input[type=file] {
+
+    min-height: 43px;
+    width: 350px;
+    max-width: 100%;
+    color: #444;
+    padding: 5px;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid #81b5e0;
+  }
+
+
+
+ 

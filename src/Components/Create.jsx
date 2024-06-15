@@ -6,7 +6,7 @@ import upload from '../images/ocr.json'
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
-
+const apiUrl = process.env.REACT_APP_API_OCR_URL;
 
 function Create() {
     const [text, setText] = useState(null);
@@ -27,7 +27,7 @@ function Create() {
         };
 
         try {
-            const uploadResponse = await fetch("http://127.0.0.1:8000/UploadImages/", requestOptions);
+            const uploadResponse = await fetch(`${apiUrl}/UploadImages/`, requestOptions);
             const uploadResult = await uploadResponse.json();
             console.log(`${uploadResult.filename} Object created`);
 
@@ -37,7 +37,7 @@ function Create() {
                 "ImageName": uploadResult.filename
             };
 
-            const translateResponse = await fetch("http://127.0.0.1:8000/translate", {
+            const translateResponse = await fetch(`${apiUrl}/translate`, {
                 method: 'POST',
                 body: JSON.stringify(translatingObject),
                 headers: {

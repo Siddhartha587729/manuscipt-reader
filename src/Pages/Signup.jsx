@@ -115,15 +115,11 @@ const Login = () => {
         }
     }, [errMsg]);
 
-
     return (
         <>
             {success ? (
-                <section>
-                    <h1>Success!</h1>
-                    <p>
-                        <Link to="#">Sign In</Link>
-                    </p>
+                <section className="flex justify-center items-center h-screen">
+                    <FaCheck color="green" size={300}/>
                 </section>
             ) : (
                 <div className='flex justify-center items-center'>
@@ -148,7 +144,7 @@ const Login = () => {
                                             Email <FaCheck color="green" className={validName ? "valid" : "hide"} /><RxCross2 color="red" className={validName || !user ? "hide" : "invalid"} />
                                         </label>
                                         <input
-                                            type="text"
+                                            type="email"
                                             id="useremail"
                                             ref={userRef}
                                             autoComplete="off"

@@ -1,103 +1,143 @@
-import "../Styles/Display.css"
-import { useEffect, useState } from "react"
-import { client } from '../client'
-/* import { fetchData, fetchUserById, fetchuser } from "../utils/data"; */
+import "../Styles/Display.css";
+import { useEffect, useState } from "react";
+import { client } from '../client';
 import { fetchData, fetchUserById } from "../utils/data";
 import { useParams } from "react-router-dom";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
+
 const Section = ({ item }) => {
+  if (!item) {
+    return <p>No item data available</p>;
+  }
+
   return (
-    <div className='rounded-lg bg-gray-100 mt-5 flex flex-col h-[500px] overflow-y-auto'>
-      <p className="border-soild border-4 border-black p-2 rounded-lg mb-2 ml-4">{`Genre:  ${item.genre}`}</p>
-      <p className="border-soild border-4 border-black p-2 rounded-lg mb-2 ml-4">{`Title:  ${item.title}`}</p>
-      <p className="border-soild border-4 border-black p-2 rounded-lg mb-2 ml-4">{`Class ID: ${item.classId}`}</p>
-      <p className="border-soild border-4 border-black p-2 rounded-lg mb-2 ml-4">{`Page : ${item.pageNo}`} </p>
-      <p className="border-soild border-4 border-black p-2 rounded-lg mb-2 ml-4">{`CPD: ${item.CPD}`}</p>
-      <p className="border-soild border-4 border-black p-2 rounded-lg mb-2 ml-4">{`Language: ${item.language}`} </p>
-      <p className="border-soild border-4 border-black p-2 rounded-lg mb-2 ml-4">{`Letters: ${item.letters}`}</p>
-      <p className="border-soild border-4 border-black p-2 rounded-lg mb-2 ml-4">{`Number of Plam leaves: ${item.noOfPlamLeaves}`} </p>
-      <p className="border-soild border-4 border-black p-2 rounded-lg mb-2 ml-4">{`Details of Folios: ${item.details}`} </p>
-      <p className="border-soild border-4 border-black p-2 rounded-lg mb-2 ml-4">{`Folio No. : ${item.folio_number}`} </p>
-      <p className="border-soild border-4 border-black p-2 rounded-lg mb-2 ml-4">{`Size: ${item.size}`} </p>
-      <p className="border-soild border-4 border-black p-2 rounded-lg mb-2 ml-4">{`Hole Position: ${item.hole_position}`} </p>
-      <p className="border-soild border-4 border-black p-2 rounded-lg mb-2 ml-4">{`Paints: ${item.paints}`}</p>
-      <p className="border-soild border-4 border-black p-2 rounded-lg mb-2 ml-4">{`Condition: ${item.condition}`} </p>
-      <p className="border-soild border-4 border-black p-2 rounded-lg mb-2 ml-4">{`Line: ${item.line}`} </p>
-      <p className="border-soild border-4 border-black p-2 rounded-lg mb-2 ml-4">{`Dimmentions: ${item.dimmentions}`} </p>
-      <p className="border-soild border-4 border-black p-2 rounded-lg mb-2 ml-4">{`Density of Letters: ${item.density}`}</p>
-      <p className="border-soild border-4 border-black p-2 rounded-lg mb-2 ml-4">{`Beginning: ${item.begining}`}</p>
-      <p className="border-soild border-4 border-black p-2 rounded-lg mb-2 ml-4">{`End: ${item.end}`} </p>
-      <p className="border-soild border-4 border-black p-2 rounded-lg mb-2 ml-4">{`Colophone: ${item.coloPhone}`} </p>
-      <p className="border-soild border-4 border-black p-2 rounded-lg mb-2 ml-4">{`Notes: ${item.notes}`}</p>
-      <p className="border-soild border-4 border-black p-2 rounded-lg mb-2 ml-4">{`Remarks: ${item.remarks}`} </p>
+    <div className='rounded-lg flex flex-col h-full overflow-y-auto '>
+      {Object.entries(item).map(([key, value]) => (
+        <p className="bg-[#81b5e0] p-2 rounded-lg px-5 mb-2 ml-4" key={key}>
+          {`${key.replace(/_/g, ' ').toUpperCase()}: ${value}`}
+        </p>
+      ))}
     </div>
-  )
-}
+  );
+};
+
 function Display() {
   const { id } = useParams();
-  /* const [image, setImage] = useState(); */
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
   const [pageno, setPageno] = useState(1);
+  const [showFirstPages, setShowFirstPages] = useState(true);
+
   useEffect(() => {
     client.fetch(fetchData(id))
       .then((doc) => {
         setData(doc);
-      })
+      });
     client.fetch(fetchUserById(id))
       .then((res) => {
         setUserInfo(res);
-      })
+      });
+  }, [id]);
 
-  }, [id])
-  const totalPage = data?.length
+  const totalPage = data.length;
+
   const handlePageChangedec = () => {
     if (pageno > 1) {
       setPageno(pageno - 1);
+      if (pageno === 11) {
+        setShowFirstPages(true);
+      }
     }
   };
+
   const handlePageChangeinc = () => {
     if (pageno < totalPage) {
       setPageno(pageno + 1);
+      if (pageno === 10) {
+        setShowFirstPages(false);
+      }
     }
   };
+
+  const handlePageChange = (page) => {
+    setPageno(page);
+  };
+
   return (
-    <>
-      <div className="flex justify-around mt-10">
-        <button onClick={handlePageChangedec} > &lt; Prev</button>
-        <div className="flex items-center">
-          <span>{pageno}/{totalPage}</span>
-        </div>
-        <button onClick={handlePageChangeinc}>Next &gt;</button>
-      </div>
-      <div className="h-[600px] flex flex-col md:flex-row justify-around gap-4 lg:gap-8 mx-4 lg:mx-10 items-start">
-        <div className="w-1/2 md:w-1/3 border-black border-2 h-[550px] p-2">
-          <div className="flex justify-center items-center border-2 border-dotted border-black h-2/3">
-            <img src={userInfo[0]?.coverImage?.asset?.url} alt="N/A" />
+    <div className="">
+      <div className="flex justify-centre items-center mt-1">
+        <div className="w-full flex justify-center items-center gap-8 mb-1">
+          <button className="bg-red-600 rounded-full" onClick={handlePageChangedec}><FaArrowLeft /></button>
+          <div className="flex items-center justify-center">
+            <div className="bg-gray-100 rounded-3xl p-1 px-2 flex items-center justify-center gap-2">
+              {showFirstPages ? (
+                <>
+                  {Array.from({ length: Math.min(10, totalPage) }, (_, i) => (
+                    <button
+                      key={i + 1}
+                      onClick={() => handlePageChange(i + 1)}
+                      className={`rounded-full  ${pageno === i + 1 ? 'bg-[#81b5e0] text-white' : ' hover:bg-gray-300'} text-gray-700 font-medium `}
+                    >
+                      {i + 1}
+                    </button>
+                  ))}
+                  {totalPage > 10 && <span>...</span>}
+                </>
+              ) : (
+                <>
+                  {Array.from({ length: Math.min(10, totalPage - 10) }, (_, i) => (
+                    <button
+                      key={i + 11}
+                      onClick={() => handlePageChange(i + 11)}
+                      className={`rounded-full  ${pageno === i + 11 ? 'bg-[#81b5e0] text-white' : 'bg-gray-200 hover:bg-gray-300'} text-gray-700 font-medium `}
+                    >
+                      {i + 11}
+                    </button>
+                  ))}
+                </>
+              )}
+            </div>
           </div>
-          <div className="mt-10 text-gray-500 flex flex-col justify-center items-start">
-            {userInfo ? (
-              <>
-                <p>{`Uploaded by : ${userInfo[0]?.username}`}</p>
-                <p>{`Date of upload : ${userInfo[0]?._createdAt}`}</p>
-                <p>{`Title : ${userInfo[0]?.title}`}</p>
-                <p>{`Organisation : ${userInfo[0]?.organisation}`}</p>
-                <p>{`Author : ${userInfo[0]?.author}`}</p>
-              </>
+          <button className="bg-red-600 rounded-full" onClick={handlePageChangeinc}><FaArrowRight /></button>
+        </div>
+      </div>
+      <div className="flex justify-center items-center">
+        <div className=" border-2 border-dashed rounded-xl border-[#81b5e0] p-5 w-[90%] flex flex-col md:flex-row justify-around items-center gap-4 lg:gap-8 mx-4 lg:mx-10 ">
+          <div className="w-1/2 md:w-1/3 flex justify-center items-center h-[550px] p-2">
+            <div className="border-2 border-dashed border-[#C0D6E8] max-w-sm bg-[#81b5e0] rounded-lg shadow-xl">
+              {userInfo[0]?.coverImage?.asset?.url ? (
+                <img className="rounded-t-lg shadow-lg hover:scale-105 hover:shadow-xl" src={userInfo[0].coverImage.asset.url} alt="N/A" />
+              ) : (
+                <p>No Image Available</p>
+              )}
+              <div className="p-5">
+                {userInfo.length > 0 ? (
+                  <>
+                    <p ><span className="font-bold">Uploaded by :</span> {`${userInfo[0]?.username}`}</p>
+                    <p><span className="font-bold">Date of upload : </span>{`${userInfo[0]?._createdAt}`}</p>
+                    <p><span className="font-bold">Title : </span>{`${userInfo[0]?.title}`}</p>
+                    <p><span className="font-bold">Organisation : </span>{`${userInfo[0]?.organisation}`}</p>
+                    <p><span className="font-bold">Author : </span>{`Author : ${userInfo[0]?.author}`}</p>
+                  </>
+                ) : (
+                  <h2>Error While Fetching User Info</h2>
+                )}
+              </div>
+            </div>
+
+          </div>
+
+          <div className="w-1/2 md:w-2/3 h-[550px]">
+            {data.length > 0 ? (
+              <Section item={data[pageno - 1]} />
             ) : (
-              <h2>Error While Fetching Userinfo</h2>
+              <p>Data Not Fetched</p>
             )}
           </div>
         </div>
-        <div className="w-1/2 md:w-2/3 border-black border-2 h-[550px]">
-          {data ? (
-            <Section item={data[pageno - 1]} />
-          ) : (
-            <p>Data Not Fetched</p>
-          )}
-        </div>
       </div>
-    </>
-  )
+    </div>
+  );
 }
 
-export default Display
+export default Display;

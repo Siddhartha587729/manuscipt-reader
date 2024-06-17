@@ -23,6 +23,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
     "react-jwt": "^1.2.1",
+    "react-loader-spinner": "^6.1.6",
     "react-lottie": "^1.2.4",
     "react-router-dom": "^6.14.2",
     "react-scripts": "5.0.1",

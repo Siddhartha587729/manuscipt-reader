@@ -25,14 +25,14 @@ function Navigation() {
     };
 
     return (
-        <nav className='px-4 my-5  '>
+        <nav className='w-[380px] md:w-[770px] lg:w-auto px-4 my-5  '>
             <div className='flex gap-2'>
                 <div className="logo">
                     <Link to="/"><img src={script} alt="my logo" width="50" height="50" /></Link>
                 </div>
                 <span className="hidden lg:inline self-center text-2xl font-semibold whitespace-nowrap ">Manuscript Reader</span>
             </div>
-            <div className="nav_list gap-4 ">
+            <div className="nav_list gap-1 md:gap-4 ">
                 {auth?.user ? (
                     <div className="bg-green-500 rounded-3xl p-2 px-3 ">
                         <span className='text-lg text-white flex gap-1 justify-center items-center'> {auth.role}<FaCheck color='white'/></span>

@@ -5,15 +5,19 @@ import Lottie from 'react-lottie';
 import upload from '../images/ocr.json'
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import { ThreeDots } from 'react-loader-spinner';
+
 
 const apiUrl = process.env.REACT_APP_API_OCR_URL;
 
 function Create() {
     const [text, setText] = useState(null);
+    const [loading, setLoading] = useState(false);
     const [errMsg, setErrMsg] = useState('');
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setLoading(true);
         const data = new FormData(event.target);
         const { newImage } = Object.fromEntries(data.entries());
 
@@ -55,6 +59,8 @@ function Create() {
             }
         } catch (error) {
             console.error('Error:', error);
+        } finally {
+            setLoading(false);
         }
 
     }
@@ -79,20 +85,20 @@ function Create() {
     return (
         <div className="">
             <div className=" h-1/2 flex flex-col justify-center items-center">
-                <h1 class="mb-4 text-4xl font-extrabold  tracking-tight text-gray-900 md:text-5xl lg:text-5xl ">Description</h1>
-                <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">Welcome to Manuscript Reader, an innovative project developed collaboratively by students from KIIT University and Otani University, Japan. This tool digitizes and preserves manuscripts, ensuring easy access and safekeeping of valuable documents. Our partnership aims to protect historical texts by converting them into a secure digital format for future generations.</p>
+                <h1 className="mb-4 text-4xl font-extrabold  tracking-tight text-gray-900 md:text-5xl lg:text-5xl ">Description</h1>
+                <p className="mb-6 text-sm md:text-lg font-normal text-gray-500 lg:text-xl px-10 sm:px-16 xl:px-48 dark:text-gray-400">Welcome to Manuscript Reader, an innovative project developed collaboratively by students from KIIT University and Otani University, Japan. This tool digitizes and preserves manuscripts, ensuring easy access and safekeeping of valuable documents. Our partnership aims to protect historical texts by converting them into a secure digital format for future generations.</p>
                 <Link to="/team">
-                    <Link to="#" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
-                        Learn more
-                        <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                    <Link to="/team" className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                        Visit our team
+                        <svg className="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
                         </svg>
                     </Link>
                 </Link>
             </div>
 
             <div className="flex justify-center mt-10">
-                <h1 class="mb-4 text-2xl font-extrabold  tracking-tight text-gray-900 md:text-4xl lg:text-4xl ">Upload To Extract Text</h1>
+                <h1 className="mb-4 text-2xl font-extrabold  tracking-tight text-gray-900 md:text-4xl lg:text-4xl ">Upload To Extract Text</h1>
             </div>
             <div className="w-full p-4 h-1/2 flex justify-center ">
                 <div className="flex border-2 border-dashed border-[#81b5e0] rounded-xl w-[80%] p-5 bg-[#C0D6E8]">
@@ -119,9 +125,22 @@ function Create() {
                 </div>
             </div>
             {
-                text ? (
+                loading ? (
+                    <div className="flex justify-center items-center h-20">
+                        <ThreeDots
+                            visible={true}
+                            height="80"
+                            width="80"
+                            color="#81b5e0"
+                            radius="9"
+                            ariaLabel="three-dots-loading"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                        />
+                    </div>
+                ) : text ? (
                     <div className=" w-full flex justify-center items-center gap-2">
-                        <div className=" min-h-[10vh] w-[70%] flex justify-between">
+                        <div className=" min-h-[10vh] w-[70%] flex flex-col md:flex-row justify-between">
                             <div className="flex flex-col gap-2 m-2 ">
                                 <span className="font-bold font-serif">Original Text</span>
                                 <span>{text.Originaltext}</span>

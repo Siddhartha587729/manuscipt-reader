@@ -3,9 +3,9 @@
     border-radius: 0.5rem;
     background: #000;
     color: #fff;
-    padding: 0.25rem;
+    padding: 0.5rem;
     position: relative;
-    bottom: -10px;
+    bottom: -2px;
 }
 
 .instructions > svg {

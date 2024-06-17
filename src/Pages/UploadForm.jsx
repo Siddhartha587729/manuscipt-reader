@@ -1,4 +1,4 @@
-import "../Styles/uploadForm.css"
+import "../Styles/uploadForm.css";
 import React, { useState } from 'react';
 import * as XLSX from 'xlsx';
 import { client } from '../client';
@@ -9,9 +9,6 @@ import { useNavigate } from 'react-router-dom';
 const UploadForm = () => {
   const [data, setData] = useState();
   const [coverPic, setCoverPic] = useState(null);
-  console.log(coverPic)
-  /* const [title, setTitle] = useState('');
-  const [organisation, setOrganisation] = useState(''); */
   const [imageAsset, setImageAsset] = useState();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -156,7 +153,7 @@ const UploadForm = () => {
                 </div>
               ) : (
                 <div className="relative h-full">
-                  <img src={imageAsset?.url} className="w-full h-full" alt="uploaded-pic" />
+                  <img src={imageAsset?.url} className="w-full h-full object-cover rounded-xl" alt="uploaded-pic" />
                   <button
                     type="button"
                     className="absolute bottom-3 right-3 p-3 rounded-full bg-white text-xl cursor-pointer outline-none"
@@ -169,27 +166,22 @@ const UploadForm = () => {
             </div>
             
           </div>
-          <div className="flex w-full md:w-96  ">
-            <form onSubmit={handleSubmit} className=" font-bold h-fit border-dashed border-2 border-[#81b5e0] p-4 space-y-4 flex items-start bg-[#C0D6E8]  ">
-              <div className="formItems">
-                <label htmlFor="author" className="text-sm ">
-                  Author
-                </label>
+          <div className="flex flex-col w-full md:w-96">
+            <form onSubmit={handleSubmit} className="font-bold h-fit border-dashed border-2 border-[#81b5e0] p-4 space-y-4 flex flex-col items-start bg-[#C0D6E8]">
+              <div className="formItems w-full">
+                <label htmlFor="author" className="text-sm">Author</label>
                 <input
                   type="text"
                   id="author"
                   name="author"
                   value={formData.author}
-                  /*placeholder="Write the Author" */
                   onChange={handleChange}
-                  className=" bg-gray-300 rounded-xl p-2 w-full text-sm"
+                  className="bg-gray-300 rounded-xl p-2 w-full text-sm"
                 />
               </div>
 
-              <div className="formItems">
-                <label htmlFor="title" className="text-sm">
-                  Title
-                </label>
+              <div className="formItems w-full">
+                <label htmlFor="title" className="text-sm">Title</label>
                 <input
                   type="text"
                   id="title"
@@ -200,10 +192,8 @@ const UploadForm = () => {
                 />
               </div>
 
-              <div className="formItems flex">
-                <label htmlFor="organisation" className="text-sm">
-                  Organisation
-                </label>
+              <div className="formItems w-full">
+                <label htmlFor="organisation" className="text-sm">Organisation</label>
                 <input
                   type="text"
                   id="organisation"
@@ -213,10 +203,9 @@ const UploadForm = () => {
                   className="border border-gray-300 p-2 w-full text-sm"
                 />
               </div>
-              <div className="mb-2">
-                <label htmlFor="excelFile" className="text-lg">
-                  Upload Excel
-                </label>
+
+              <div className="formItems w-full mb-2">
+                <label htmlFor="excelFile" className="text-lg">Upload Excel</label>
                 <input
                   type="file"
                   id="excelFile"
@@ -226,10 +215,9 @@ const UploadForm = () => {
                   className="border border-gray-300 p-2 w-full text-sm"
                 />
               </div>
-              <div className='flex items-center justify-center formItems'>
-                <button type="submit"  className="text-white bg-orange-400 border-2 border-orange-900 rounded-full py-2 hover:scale-105 focus:ring-4 focus:ring-blue-300">
-                  Upload
-                </button>
+
+              <div className='flex items-center justify-center w-full'>
+                <button type="submit" className="text-white bg-orange-400 border-2 border-orange-900 rounded-full py-2 px-4 hover:scale-105 focus:ring-4 focus:ring-blue-300">Upload</button>
               </div>
             </form>
           </div>

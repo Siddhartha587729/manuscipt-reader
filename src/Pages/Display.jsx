@@ -11,7 +11,7 @@ const Section = ({ item }) => {
   }
 
   return (
-    <div className='rounded-lg flex flex-col h-full overflow-y-auto '>
+    <div className='rounded-lg flex flex-col h-full overflow-y-auto'>
       {Object.entries(item).map(([key, value]) => (
         <p className="bg-[#81b5e0] p-2 rounded-lg px-5 mb-2 ml-4" key={key}>
           {`${key.replace(/_/g, ' ').toUpperCase()}: ${value}`}
@@ -64,10 +64,10 @@ function Display() {
   };
 
   return (
-    <div className="">
-      <div className="flex justify-centre items-center mt-1">
-        <div className="w-full flex justify-center items-center gap-8 mb-1">
-          <button className="bg-red-600 rounded-full" onClick={handlePageChangedec}><FaArrowLeft /></button>
+    <div className="min-h-screen flex flex-col items-center py-4">
+      <div className="flex justify-center items-center mt-1 w-full">
+        <div className="w-full flex justify-center items-center gap-4 mb-1">
+          <button className="bg-red-500 p-2 rounded-full" onClick={handlePageChangedec}><FaArrowLeft color="white" /></button>
           <div className="flex items-center justify-center">
             <div className="bg-gray-100 rounded-3xl p-1 px-2 flex items-center justify-center gap-2">
               {showFirstPages ? (
@@ -76,7 +76,7 @@ function Display() {
                     <button
                       key={i + 1}
                       onClick={() => handlePageChange(i + 1)}
-                      className={`rounded-full  ${pageno === i + 1 ? 'bg-[#81b5e0] text-white' : ' hover:bg-gray-300'} text-gray-700 font-medium `}
+                      className={`rounded-full px-2 py-1 ${pageno === i + 1 ? 'bg-[#81b5e0] text-white' : 'hover:bg-gray-300'} text-gray-700 font-medium text-xs md:text-sm`}
                     >
                       {i + 1}
                     </button>
@@ -89,7 +89,7 @@ function Display() {
                     <button
                       key={i + 11}
                       onClick={() => handlePageChange(i + 11)}
-                      className={`rounded-full  ${pageno === i + 11 ? 'bg-[#81b5e0] text-white' : 'bg-gray-200 hover:bg-gray-300'} text-gray-700 font-medium `}
+                      className={`rounded-full px-2 py-1 ${pageno === i + 11 ? 'bg-[#81b5e0] text-white' : 'bg-gray-200 hover:bg-gray-300'} text-gray-700 font-medium text-xs md:text-sm`}
                     >
                       {i + 11}
                     </button>
@@ -98,36 +98,34 @@ function Display() {
               )}
             </div>
           </div>
-          <button className="bg-red-600 rounded-full" onClick={handlePageChangeinc}><FaArrowRight /></button>
+          <button className="bg-red-500 p-2 rounded-full" onClick={handlePageChangeinc}><FaArrowRight color="white" /></button>
         </div>
       </div>
-      <div className="flex justify-center items-center">
-        <div className=" border-2 border-dashed rounded-xl border-[#81b5e0] p-5 w-[90%] flex flex-col md:flex-row justify-around items-center gap-4 lg:gap-8 mx-4 lg:mx-10 ">
-          <div className="w-1/2 md:w-1/3 flex justify-center items-center h-[550px] p-2">
-            <div className="border-2 border-dashed border-[#C0D6E8] max-w-sm bg-[#81b5e0] rounded-lg shadow-xl">
+      <div className="flex flex-col md:flex-row justify-center items-center w-full px-4 md:px-10">
+        <div className="border-2 border-dashed rounded-xl border-[#81b5e0] p-5 w-full flex flex-col md:flex-row justify-around items-center gap-4 lg:gap-8">
+          <div className="w-full md:w-1/3 flex justify-center items-center h-[300px] md:h-[550px] p-2">
+            <div className="border-2 border-dashed border-[#C0D6E8] max-w-sm bg-[#81b5e0] rounded-lg shadow-xl w-full">
               {userInfo[0]?.coverImage?.asset?.url ? (
-                <img className="rounded-t-lg shadow-lg hover:scale-105 hover:shadow-xl" src={userInfo[0].coverImage.asset.url} alt="N/A" />
+                <img className="rounded-t-lg shadow-lg hover:scale-105 hover:shadow-xl w-[50%] h-[50%] md:w-full md:h-full object-cover" src={userInfo[0].coverImage.asset.url} alt="N/A" />
               ) : (
                 <p>No Image Available</p>
               )}
               <div className="p-5">
                 {userInfo.length > 0 ? (
                   <>
-                    <p ><span className="font-bold">Uploaded by :</span> {`${userInfo[0]?.username}`}</p>
-                    <p><span className="font-bold">Date of upload : </span>{`${userInfo[0]?._createdAt}`}</p>
-                    <p><span className="font-bold">Title : </span>{`${userInfo[0]?.title}`}</p>
-                    <p><span className="font-bold">Organisation : </span>{`${userInfo[0]?.organisation}`}</p>
-                    <p><span className="font-bold">Author : </span>{`Author : ${userInfo[0]?.author}`}</p>
+                    <p><span className="font-bold">Uploaded by :</span> {`${userInfo[0]?.username}`}</p>
+                    <p><span className="font-bold">Date of upload :</span> {`${userInfo[0]?._createdAt}`}</p>
+                    <p><span className="font-bold">Title :</span> {`${userInfo[0]?.title}`}</p>
+                    <p><span className="font-bold">Organisation :</span> {`${userInfo[0]?.organisation}`}</p>
+                    <p><span className="font-bold">Author :</span> {`Author : ${userInfo[0]?.author}`}</p>
                   </>
                 ) : (
                   <h2>Error While Fetching User Info</h2>
                 )}
               </div>
             </div>
-
           </div>
-
-          <div className="w-1/2 md:w-2/3 h-[550px]">
+          <div className="w-full md:w-2/3 h-[300px] md:h-[550px]">
             {data.length > 0 ? (
               <Section item={data[pageno - 1]} />
             ) : (

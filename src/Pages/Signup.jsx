@@ -124,11 +124,11 @@ const Login = () => {
             ) : (
                 <div className='flex justify-center items-center'>
                     <ToastContainer />
-                    <div className='h-screen w-[70%] p-8 flex gap-5'>
-                        <div className='w-1/2 bg-blue-300 h-full rounded-3xl p-5 flex'>
+                    <div className='h-screen md:w-[70%] p-8 flex flex-col lg:flex-row gap-5'>
+                        <div className='w-full lg:w-1/2 bg-blue-300 h-full rounded-3xl p-5 flex'>
                             <Lottie animationData={signup} />
                         </div>
-                        <div className='w-1/2 h-full flex flex-col p-5'>
+                        <div className='w-full lg:w-1/2 h-full flex flex-col p-5'>
                             <div className='h-1/6 flex gap-2 justify-center'>
                                 <img src={script} className="h-7" alt="Logo" />
                                 <span className='text-xl font-serif'>Manuscript</span>
@@ -136,11 +136,11 @@ const Login = () => {
                             <div className="h-4/6 flex flex-col gap-4 justify-center items-center">
                                 <div className="flex gap-3 flex-col justify-center items-center">
                                     <span className="font-serif text-3xl">Welcome Visitor</span>
-                                    <span className="text-sm">Enter the following details to create your account with us</span>
+                                    <span className="text-sm text-center">Enter the following details to create your account with us</span>
                                 </div>
-                                <div className="w-full">
-                                    <form onSubmit={handleSubmit} className="flex flex-col justify-start items-start">
-                                        <label htmlFor="useremail" className="flex items-center gap-2">
+                                <div className="w-full md:w-[80%]">
+                                    <form onSubmit={handleSubmit} className=" flex flex-col justify-start items-center">
+                                        <label htmlFor="useremail" className="w-full flex gap-2 justify-start items-center">
                                             Email <FaCheck color="green" className={validName ? "valid" : "hide"} /><RxCross2 color="red" className={validName || !user ? "hide" : "invalid"} />
                                         </label>
                                         <input
@@ -161,7 +161,7 @@ const Login = () => {
                                             Must begin with a letter.<br />
                                             Letters, numbers, underscores, hyphens allowed.
                                         </p>
-                                        <label htmlFor="userpwd" className="flex items-center gap-2">
+                                        <label htmlFor="userpwd" className="w-full flex gap-2 justify-start items-center">
                                             Password <FaCheck color="green" className={validPwd ? "valid" : "hide"} /><RxCross2 color="red" className={validPwd || !pwd ? "hide" : "invalid"} />
                                         </label>
                                         <input
@@ -180,7 +180,7 @@ const Login = () => {
                                             Must include uppercase and lowercase letters, a number, and a special character.<br />
                                             Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
                                         </p>
-                                        <label htmlFor="userconfirmpwd" className="flex items-center gap-2">
+                                        <label htmlFor="userconfirmpwd" className="w-full flex gap-2 justify-start items-center">
                                             Confirm Password <FaCheck color="green" className={validMatch && matchPwd ? "valid" : "hide"} /><RxCross2 color="red" className={validMatch || !matchPwd ? "hide" : "invalid"} />
                                         </label>
                                         <input
@@ -197,7 +197,7 @@ const Login = () => {
                                             <CiCircleInfo />
                                             Must match the first password input field.
                                         </p>
-                                        <div className="w-full flex justify-around">
+                                        <div className="w-full flex flex-col sm:flex-row sm:justify-around">
                                             <span className="font-bold">Role:</span>
                                             <label htmlFor="roleAdmin">
                                                 <input
@@ -230,14 +230,14 @@ const Login = () => {
                                             Sign Up
                                         </button>
                                         <button
-                                            className="flex justify-center items-center gap-3 w-full bg-gray-50 rounded-xl"
+                                            className="hidden md:flex justify-center items-center gap-3 w-full bg-gray-50 rounded-xl"
                                         >
                                             <FaGoogle /> Sign Up with Google
                                         </button>
                                     </form>
                                 </div>
                             </div>
-                            <div className="h-1/6 flex justify-center items-end">
+                            <div className="mt-2 h-1/6 flex justify-center items-end text-center">
                                 <span>Already have an account? <span className="font-bold"><Link to="/login">Log In</Link></span></span>
                             </div>
                         </div>

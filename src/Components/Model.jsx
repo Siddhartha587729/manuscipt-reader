@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import "../Styles/model.css"
 //import book from "../assets/scene.gltf"
 import Model1 from "./Model1"
@@ -5,14 +6,17 @@ import Model1 from "./Model1"
 
 function Model() {
   return (
-    <div className="top_bar font-sans flex-col xl:flex-row">
-      <div className="left_bar">
-        <div className="left-bar-head">
+    <div className="flex font-sans flex-col xl:flex-row md:justify-center md:items-center">
+      <div className=" p-4  flex">
+        <div className="left-bar-head ">
           <div className="flex flex-col">
-            <span className="text-2xl font-bold text-[#15133C]">Create your own digital</span>
+            <span className="md:hidden w-full flex justify-end">
+              <Link to='/team'>About Us</Link>
+            </span>
+            <span className="text-xl md:text-2xl font-bold text-[#15133C]">Create your own digital</span>
             <span className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-[#EC994B] md:text-8xl lg:text-8xl">Manuscript</span>
           </div>
-          <h5 className="word_wrap text-base text-[#15133C]">Welcome to Manuscript Reader, your ultimate solution for digitizing and preserving manuscripts. Our innovative tool reads and stores manuscripts in digital form, ensuring easy access and safekeeping of your valuable documents. </h5>
+          <h5 className="md:w-[600px] text-wrap text-[#15133C]">Welcome to Manuscript Reader, your ultimate solution for digitizing and preserving manuscripts. Our innovative tool reads and stores manuscripts in digital form, ensuring easy access and safekeeping of your valuable documents. </h5>
         </div>
       </div>
       <div className="right_bar ">

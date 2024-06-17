@@ -1,5 +1,4 @@
 import Lottie from "lottie-react";
-import '../Styles/login.css';
 import login from "../images/login.json";
 import script from '../images/navLogo.svg';
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -94,11 +93,11 @@ const Login = () => {
     return (
         <div className='flex justify-center items-center'>
             <ToastContainer />
-            <div className='h-screen w-[70%] p-8 flex gap-5 '>
-                <div className='w-1/2 bg-blue-300 h-full rounded-3xl p-5 flex'>
+            <div className='h-screen w-full md:w-[70%] p-8 flex flex-col lg:flex-row gap-5 '>
+                <div className='w-full lg:w-1/2 bg-blue-300 h-full rounded-3xl p-5 flex'>
                     <Lottie animationData={login} />
                 </div>
-                <div className='w-1/2 h-full flex flex-col p-5 '>
+                <div className='w-full lg:w-1/2 h-full flex flex-col p-5 '>
                     <div className='h-1/6 flex gap-2 justify-center'>
                         <img src={script} className="h-7" alt="Logo" />
                         <span className='text-xl font-serif '>Manuscript</span>
@@ -106,33 +105,33 @@ const Login = () => {
                     <div className="h-4/6 flex flex-col gap-4 justify-center items-center">
                         <div className="flex gap-3 flex-col justify-center items-center">
                             <span className="font-serif text-3xl">Welcome Back</span>
-                            <span className="text-sm">Enter your email and password to access your account</span>
+                            <span className="text-sm text-center">Enter your email and password to access your account</span>
                         </div>
-                        <div className="w-full">
-                            <form onSubmit={handleSubmit} className="flex flex-col justify-start items-start">
-                                <label htmlFor="useremail" className="">Email</label>
+                        <div className="w-full md:w-[80%]">
+                            <form onSubmit={handleSubmit} className="flex flex-col justify-start items-center">
+                                <label htmlFor="useremail" className="flex items-start justify-start w-full">Email</label>
                                 <input
                                     type="email"
-                                    className="m-2 p-5 rounded-xl h-[50px] w-full bg-slate-100"
+                                    className="md:m-2 p-5 rounded-xl h-[50px] w-full bg-slate-100"
                                     onChange={(e) => setUser(e.target.value)}
                                     value={user}
                                     required
                                 />
-                                <label htmlFor="userpwd" className="">Password</label>
+                                <label htmlFor="userpwd" className="flex items-start justify-start w-full">Password</label>
                                 <input
                                     type="password"
-                                    className="m-2 p-5 rounded-xl h-[50px] w-full bg-slate-100"
+                                    className="md:m-2 p-5 rounded-xl h-[50px] w-full bg-slate-100"
                                     onChange={(e) => setPwd(e.target.value)}
                                     value={pwd}
                                     required
                                 />
-                                <div className="w-full flex justify-between">
+                                <div className="w-full flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-1 justify-between">
                                     <div>
                                         <input type="checkbox" />
-                                        <label htmlFor=""> Remember me</label>
+                                        <label htmlFor="" className=" text-sm md:text-lg"> Remember me</label>
                                     </div>
-                                    <div className="font-bold">
-                                        <Link to="/">Forgot Password</Link>
+                                    <div className="font-bold text-sm md:text-lg">
+                                        <Link to="/unauthorized">Forgot Password</Link>
                                     </div>
                                 </div>
                                 <button
@@ -141,13 +140,13 @@ const Login = () => {
                                 >
                                     Log In
                                 </button>
-                                <button className="flex justify-center items-center gap-3 w-full bg-gray-50 rounded-xl">
+                                <button className="hidden md:flex justify-center items-center gap-3 w-full bg-gray-50 rounded-xl">
                                     <FaGoogle />Log In with Google
                                 </button>
                             </form>
                         </div>
                     </div>
-                    <div className="h-1/6 flex justify-center items-end">
+                    <div className="h-1/6 mt-2 md:mt-4 flex justify-center items-end text-center">
                         <span>Don't have an account? <span className="font-bold"><Link to="/signup">Sign Up </Link></span></span>
                     </div>
                 </div>

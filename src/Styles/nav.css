@@ -54,7 +54,13 @@ nav a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    display:block;
+}
+
+@media (max-width: 650px) {
+    .nav-list-1 {
+        display: none;
+    }
 }
 
 .nav-list-1:hover {

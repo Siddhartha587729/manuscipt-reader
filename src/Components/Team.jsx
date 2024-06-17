@@ -15,14 +15,23 @@ function Team() {
     const style = {
         width: '100px',
     };
-
+    const membersUrl = {
+        Sahil : 'https://res.cloudinary.com/dvg0eo991/image/upload/v1718645144/collaborators/sahil_yqvcy0.jpg',
+        Siddhartha:'https://res.cloudinary.com/dvg0eo991/image/upload/v1718645144/collaborators/sid_o2jloo.jpg',
+        Yuvraj:'https://res.cloudinary.com/dvg0eo991/image/upload/v1718646214/collaborators/yuvraj_ohu1jv.jpg',
+        jayam:'https://res.cloudinary.com/dvg0eo991/image/upload/v1718645145/collaborators/jayam_hqcksf.jpg', 
+        mandakani:'https://res.cloudinary.com/dvg0eo991/image/upload/v1718645145/collaborators/mandakani_xhbh72.jpg',
+        ankit:'https://res.cloudinary.com/dvg0eo991/image/upload/v1718645146/collaborators/ankit_ukoqtc.jpg',
+        Siddhant:'https://res.cloudinary.com/dvg0eo991/image/upload/v1718646468/collaborators/sidhant_fl0seu.jpg'
+    }
     const teamMembers = [
-        { img: mem2, link: 'https://www.linkedin.com/in/yuvraj229/' },
-        { img: mem1, link: 'https://www.linkedin.com/in/siddhartha-kumar-748751223/' },
-        { img: mem3, link: 'https://www.linkedin.com/in/sahil-kumar-522322249/' },
-        { img: mem4, link: 'https://www.linkedin.com/in/jayam-gupta-806a2b242/' },
-        { img: mem5, link: 'https://www.linkedin.com/in/mandakani-mishra-8617771a8/' },
-        { img: mem6, link: 'https://www.linkedin.com/in/iamsoankitt/' },
+        { img: membersUrl.Yuvraj, link: 'https://www.linkedin.com/in/yuvraj229/' },
+        { img: membersUrl.Siddhartha, link: 'https://www.linkedin.com/in/siddhartha-kumar-748751223/' },
+        { img: membersUrl.Sahil, link: 'https://www.linkedin.com/in/sahil-kumar-522322249/' },
+        { img: membersUrl.jayam, link: 'https://www.linkedin.com/in/jayam-gupta-806a2b242/' },
+        { img: membersUrl.mandakani, link: 'https://www.linkedin.com/in/mandakani-mishra-8617771a8/' },
+        { img: membersUrl.ankit , link: 'https://www.linkedin.com/in/iamsoankitt/' },
+        { img: membersUrl.Siddhant, link:'https://www.linkedin.com/in/sidhant-raj'}
     ];
 
     return (
@@ -46,7 +55,7 @@ function Team() {
                         {teamMembers.map((member, index) => (
                             <div
                                 key={index}
-                                className={`w-1/2 md:w-1/4 lg:w-1/6 flex justify-center p-2 ${
+                                className={`w-1/2 md:w-1/4 xl:w-1/7 flex justify-center p-2 ${
                                     index % 2 === 0 ? 'translate-y-12' : ''
                                 }`}
                             >
@@ -55,7 +64,7 @@ function Team() {
                                         <img
                                             src={member.img}
                                             alt={`Team member ${index + 1}`}
-                                            className='w-full h-full object-cover rounded-2xl'
+                                            className='w-full h-full object-cover  rounded-2xl'
                                         />
                                     </div>
                                 </Link>
